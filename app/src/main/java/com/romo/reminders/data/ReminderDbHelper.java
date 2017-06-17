@@ -34,7 +34,7 @@ public class ReminderDbHelper extends SQLiteOpenHelper {
                    ReminderEntry.COLUMN_COMPLETED + BOOLEAN_TYPE + COMMA_SEP +
                    ReminderEntry.COLUMN_LIST_POSITION + INT_TYPE + ")");
 
-        // Create a trigger that is in charge of assigning list positions to newly inserted reminders
+        // Creates a trigger that is in charge of assigning list positions to newly inserted reminders
         db.execSQL("CREATE TRIGGER assign_list_position_to_reminder AFTER INSERT ON " + ReminderEntry.TABLE_NAME +
                    " BEGIN UPDATE " + ReminderEntry.TABLE_NAME +
                    " SET " + ReminderEntry.COLUMN_LIST_POSITION + "=(" + "SELECT MAX(" + ReminderEntry.COLUMN_LIST_POSITION + ") FROM " + ReminderEntry.TABLE_NAME + ") + 1" +
