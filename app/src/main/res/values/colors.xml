@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- common colors -->
+    <color name="black">#000000</color>
+    <color name="icon_tint">#9E9E9E</color> <!-- grey 200 -->
+    <color name="divider">#1f000000</color> <!-- 12% black -->
+
+    <!-- priority level colors -->
+    <color name="priority_none">#9E9E9E</color> <!-- grey 500 -->
+    <color name="priority_low">#2196F3</color> <!-- blue 500 -->
+    <color name="priority_med">#FF9800</color> <!-- orange 500 -->
+    <color name="priority_high">#F44336</color> <!-- red 500 -->
+
 </resources>
