@@ -21,6 +21,10 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
 
     private List<Reminder> reminderList;
 
+    public ReminderAdapter(List<Reminder> reminderList) {
+        this.reminderList = reminderList;
+    }
+
     public void setReminderList(List<Reminder> reminderList) {
         this.reminderList = reminderList;
         notifyDataSetChanged();
