@@ -21,9 +21,18 @@ public class HomeActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        if (savedInstanceState != null) {
+            return;
+        }
+
         RemindersFragment remindersFragment = new RemindersFragment();
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.reminders_container, remindersFragment).commit();
+
+        ReminderInputFragment reminderInputFragment = new ReminderInputFragment();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.reminder_input_container, reminderInputFragment).commit();
     }
 }

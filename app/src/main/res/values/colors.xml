@@ -8,6 +8,7 @@
 
     <!-- common colors -->
     <color name="black">#000000</color>
+    <color name="background_light">#FAFAFA</color> <!-- grey 50 -->
     <color name="icon_tint">#9E9E9E</color> <!-- grey 200 -->
     <color name="divider">#1f000000</color> <!-- 12% black -->
 

@@ -13,6 +13,8 @@
     <FrameLayout
         android:id="@+id/reminder_input_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/background_light"
+        android:elevation="@dimen/z_fab" />
 
 </LinearLayout>
