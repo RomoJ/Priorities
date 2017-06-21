@@ -22,7 +22,10 @@ public class ReminderProvider extends ContentProvider {
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
+        // Sets the code for the entire reminders table
         uriMatcher.addURI(AUTHORITY, PATH_REMINDERS, REMINDERS);
+
+        // Sets the code for a single reminder
         uriMatcher.addURI(AUTHORITY, PATH_REMINDERS + "/#", REMINDER_WITH_ID);
     }
 
@@ -34,6 +37,7 @@ public class ReminderProvider extends ContentProvider {
         return true;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection,
@@ -43,6 +47,8 @@ public class ReminderProvider extends ContentProvider {
         Cursor retCursor;
 
         switch (uriMatcher.match(uri)) {
+
+            // If the incoming URI was for the entire reminders table
             case REMINDERS:
                 retCursor = db.query(ReminderEntry.TABLE_NAME,
                         projection,
@@ -52,6 +58,8 @@ public class ReminderProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
+
+            // If the incoming URI was for a single reminder
             case REMINDER_WITH_ID:
                 String id = uri.getPathSegments().get(1);
 
@@ -63,8 +71,10 @@ public class ReminderProvider extends ContentProvider {
                         null,
                         sortOrder);
                 break;
+
+            // If the incoming URI is not supported
             default:
-                throw new UnsupportedOperationException("Unknown uri:" + uri);
+                throw new IllegalArgumentException("Unsupported uri:" + uri);
         }
 
         retCursor.setNotificationUri(getContext().getContentResolver(), uri);
@@ -78,6 +88,7 @@ public class ReminderProvider extends ContentProvider {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
@@ -86,6 +97,8 @@ public class ReminderProvider extends ContentProvider {
         Uri retUri;
 
         switch (uriMatcher.match(uri)) {
+
+            // If the incoming URI was for the entire reminders table
             case REMINDERS:
                 long id = db.insert(ReminderEntry.TABLE_NAME, null, values);
 
@@ -95,8 +108,10 @@ public class ReminderProvider extends ContentProvider {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }
                 break;
+
+            // If the incoming URI is not supported
             default:
-                throw new UnsupportedOperationException("Unknown uri:" + uri);
+                throw new IllegalArgumentException("Unsupported uri:" + uri);
         }
 
         getContext().getContentResolver().notifyChange(uri, null);
@@ -104,6 +119,7 @@ public class ReminderProvider extends ContentProvider {
         return retUri;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
         final SQLiteDatabase db = reminderDbHelper.getWritableDatabase();
@@ -111,13 +127,17 @@ public class ReminderProvider extends ContentProvider {
         int remindersDeleted;
 
         switch (uriMatcher.match(uri)) {
+
+            // If the incoming URI was for a single reminder
             case REMINDER_WITH_ID:
                 String id = uri.getPathSegments().get(1);
 
                 remindersDeleted = db.delete(ReminderEntry.TABLE_NAME, "_id = ?", new String[]{id});
                 break;
+
+            // If the incoming URI is not supported
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException("Unsupported uri: " + uri);
         }
 
         if (remindersDeleted != 0) {
@@ -127,6 +147,7 @@ public class ReminderProvider extends ContentProvider {
         return remindersDeleted;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection,
                       @Nullable String[] selectionArgs) {
@@ -135,13 +156,17 @@ public class ReminderProvider extends ContentProvider {
         int remindersUpdated;
 
         switch (uriMatcher.match(uri)) {
+
+            // If the incoming URI was for a single reminder
             case REMINDER_WITH_ID:
                 String id = uri.getPathSegments().get(1);
 
                 remindersUpdated = db.update(ReminderEntry.TABLE_NAME, values, "_id = ?", new String[]{id});
                 break;
+
+            // If the incoming URI is not supported
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException("Unsupported uri: " + uri);
         }
 
         if (remindersUpdated != 0) {

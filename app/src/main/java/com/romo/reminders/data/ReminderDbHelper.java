@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.romo.reminders.data.ReminderContract.ReminderEntry;
 
+/**
+ * Manages database creation and version management
+ */
 public class ReminderDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Reminders.db";
