@@ -4,7 +4,7 @@ import com.romo.reminders.R;
 
 public class ReminderUtils {
 
-    public static int getPriorityStripColorRes(int priority) throws IllegalArgumentException {
+    public static int getPriorityStripColorRes(int priority) {
         switch (priority) {
             case 0:
                 return R.color.priority_none;
