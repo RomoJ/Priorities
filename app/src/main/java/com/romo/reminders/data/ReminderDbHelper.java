@@ -15,9 +15,9 @@ public class ReminderDbHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
-    private static final String INT_TYPE = "INTEGER";
+    private static final String INT_TYPE = " INTEGER";
 
-    private static final String STRING_TYPE = "TEXT";
+    private static final String STRING_TYPE = " TEXT";
 
     private static final String BOOLEAN_TYPE = "INTEGER";
 
