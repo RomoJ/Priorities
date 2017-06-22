@@ -3,13 +3,16 @@ package com.romo.reminders.ui;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.romo.reminders.R;
+import com.romo.reminders.data.Reminder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity
+        implements ReminderInputFragment.OnReminderAddedListener {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
 
@@ -34,5 +37,10 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.reminder_input_container, reminderInputFragment).commit();
+    }
+
+    @Override
+    public void onReminderAdded(Reminder reminder) {
+        Toast.makeText(this, "Reminder Added", Toast.LENGTH_SHORT).show();
     }
 }
