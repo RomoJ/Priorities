@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reminders</string>
+    <string name="app_name">Priorities</string>
     <string name="reminder_title">Reminder Title</string>
     <string name="add">Add</string>
 </resources>
